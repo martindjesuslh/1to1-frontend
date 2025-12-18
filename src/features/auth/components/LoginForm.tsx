@@ -91,7 +91,7 @@ const LoginForm: FC = () => {
         {isLoading ? "Iniciado sesión" : "Iniciar Sesión"}
       </Button>
 
-      <Button fullWidth variant="contained" onClick={() => navigate("/")} disabled={isLoading}>
+      <Button fullWidth variant="contained" onClick={() => navigate("/register")} disabled={isLoading}>
         ¿No tienes cuenta? Regístrate
       </Button>
     </Box>

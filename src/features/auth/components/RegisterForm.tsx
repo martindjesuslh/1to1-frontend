@@ -119,7 +119,7 @@ export const RegisterForm = () => {
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
-        disabled={isLoading || !isLoading}
+        disabled={isLoading || !isValid}
       >
         {isLoading ? "Registrando..." : "Registrarse"}
       </Button>
