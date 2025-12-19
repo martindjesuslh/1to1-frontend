@@ -19,9 +19,11 @@ export const useChatStore = create<ChatState>((set, get) => ({
       });
 
       set(state => ({
+        ...state,
         messages: [...state.messages, response.userMessage, response.botMessage],
         currentConversation: state.currentConversation || {
           id: response.conversation.id,
+          title: response.conversation.title,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },
@@ -58,6 +60,35 @@ export const useChatStore = create<ChatState>((set, get) => ({
         error: error.response?.data?.message || "Error al cargar historial",
         isLoading: false,
       });
+    }
+  },
+
+  deleteConversation: async (conversationId: string) => {
+    try {
+      await chatService.deleteConversation(conversationId);
+      set(state => ({
+        conversations: state.conversations.filter(c => c.id !== conversationId),
+        currentConversation:
+          state.currentConversation?.id === conversationId ? null : state.currentConversation,
+        messages: state.currentConversation?.id === conversationId ? [] : state.messages,
+      }));
+    } catch (error: any) {
+      set({ error: error.response?.data?.message || "Error al eliminar conversación" });
+    }
+  },
+
+  updateConversationTitle: async (conversationId: string, title: string) => {
+    try {
+      await chatService.updateTitle(conversationId, title);
+      set(state => ({
+        conversations: state.conversations.map(c => (c.id === conversationId ? { ...c, title } : c)),
+        currentConversation:
+          state.currentConversation?.id === conversationId
+            ? { ...state.currentConversation, title }
+            : state.currentConversation,
+      }));
+    } catch (error: any) {
+      set({ error: error.response?.data?.message || "Error al actualizar título" });
     }
   },
 

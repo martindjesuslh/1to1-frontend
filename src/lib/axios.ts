@@ -34,6 +34,7 @@ instance.interceptors.response.use(
 const axiosInstance = {
   get: <T>(url: string, config?: any) => instance.get<any, ApiResponse<T>>(url, config),
   post: <T>(url: string, data?: any, config?: any) => instance.post<any, ApiResponse<T>>(url, data, config),
+  patch: <T>(url: string, data?: any, config?: any) => instance.patch<any, ApiResponse<T>>(url, data, config),
   put: <T>(url: string, data?: any, config?: any) => instance.put<any, ApiResponse<T>>(url, data, config),
   delete: <T>(url: string, config?: any) => instance.delete<any, ApiResponse<T>>(url, config),
 };
