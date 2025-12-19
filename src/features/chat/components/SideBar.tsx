@@ -19,6 +19,8 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
     setCurrentConversation,
     createNewConversation,
     loadConversations,
+    deleteConversation,
+    updateConversationTitle,
   } = useChatStore();
 
   useEffect(() => {
@@ -46,6 +48,8 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
           currentConversation={currentConversation}
           onSelectConversation={setCurrentConversation}
           onNewConversation={createNewConversation}
+          onDelete={deleteConversation}
+          onEdit={updateConversationTitle}
         />
       </Box>
     </Drawer>

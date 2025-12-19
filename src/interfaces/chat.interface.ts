@@ -8,6 +8,7 @@ export interface Message {
 
 export interface Conversation {
   id: string;
+  title: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -37,4 +38,6 @@ export interface ChatState {
   loadConversations: () => Promise<void>;
   createNewConversation: () => void;
   setCurrentConversation: (conversation: Conversation | null) => void;
+  deleteConversation: (conversationId: string) => Promise<void>;
+  updateConversationTitle: (conversationId: string, title: string) => Promise<void>;
 }
