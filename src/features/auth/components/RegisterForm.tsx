@@ -16,7 +16,7 @@ export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     watch,
   } = useForm<RegisterRequest & { confirmPassword: string }>();
 
@@ -114,13 +114,7 @@ export const RegisterForm = () => {
         helperText={errors.confirmPassword?.message}
       />
 
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-        disabled={isLoading || !isValid}
-      >
+      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={isLoading}>
         {isLoading ? "Registrando..." : "Registrarse"}
       </Button>
 

@@ -17,7 +17,7 @@ const LoginForm: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<LoginRequest>();
 
   const onSubmit = async (data: LoginRequest) => {
@@ -26,7 +26,7 @@ const LoginForm: FC = () => {
       setError("");
 
       await login(data.email, data.password);
-      navigate("/chat")
+      navigate("/chat");
     } catch (error: any) {
       setError(error?.response?.data?.message || "Error of init session");
     } finally {
@@ -81,13 +81,7 @@ const LoginForm: FC = () => {
         helperText={errors.password?.message}
       ></TextField>
 
-      <Button
-        fullWidth
-        type="submit"
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-        disabled={isLoading || !isValid}
-      >
+      <Button fullWidth type="submit" variant="contained" sx={{ mt: 3, mb: 2 }} disabled={isLoading}>
         {isLoading ? "Iniciado sesión" : "Iniciar Sesión"}
       </Button>
 

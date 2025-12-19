@@ -29,6 +29,9 @@ export const useChatStore = create<ChatState>((set, get) => ({
         },
         isLoading: false,
       }));
+      if (!conversationId) {
+        get().loadConversations();
+      }
     } catch (error: any) {
       set({
         error: error.response?.data?.message || "Error al enviar mensaje",

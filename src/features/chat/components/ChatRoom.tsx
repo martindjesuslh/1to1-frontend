@@ -18,7 +18,6 @@ const ChatRoom = () => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        maxWidth: "900px",
         mx: "auto",
       }}
     >
